@@ -8,15 +8,17 @@ categories: iOS
 
 在iOS下UIWebview中的代码和Objective C代码交互比较蛋疼，其过程可以用下面一段描述：
 
-	1. 制造一个点击，链接为自己定义的格式，比如 protocol://control/action?key1=value1
-	2. UIWebview的delegate收到webView:shouldStartLoadWithRequest:navigationType: 分析链接，并处理
-	3. 如果要返回结果则调用 [webView stringByEvaluatingJavaScriptFromString:]
+>
+1. 制造一个点击，链接为自己定义的格式，比如`protocol://control/action?key1=value1`  
+- UIWebview的delegate收到`webView:shouldStartLoadWithRequest:navigationType:`分析链接，并处理  
+- 如果要返回结果则调用`[webView stringByEvaluatingJavaScriptFromString:]`
+
 
 要是这种交互接口不多，随便按照上面步骤写写就够用了。如果这些接口不少，我们可以利用performSelector来解放一下生产力。
 
 <!-- more -->
 
-上面描述中接口 protocol://control/action?key1=value1 是一个二级接口 (一般情况够用的了)，我们可以把control当作一个类（一般情况下webview的delegate一个就够了)，action当作类的方法, {key1: value1}单做方法的参数。
+上面描述中接口`protocol://control/action?key1=value1`是一个二级接口 (一般情况够用的了)，我们可以把`control`当作一个类（一般情况下webview的delegate一个就够了)，`action`当作类的方法, `{key1: value1}`单做方法的参数。
 
 例如收到上面地址可以如下处理：
 
@@ -36,4 +38,4 @@ if ([host isEqualToString:@"control"]) {
 
 ```
 
-按照上面代码中的规则，webview.delegate 只要实现了actionXxx: 就可以响应protocol://control/xxx 接口.
+按照上面代码中的规则，webview.delegate 只要实现了`actionXxx:`就可以响应`protocol://control/xxx`接口.
