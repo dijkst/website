@@ -14,6 +14,8 @@ categories: iOS
 > 1. 用于App的mobileprovision配置文件
 > -  用于服务器和APNS验证的SSL证书
 
+<!-- More -->
+
 ### 1. 制作/更新配置文件(.mobileprovision)
 
 该证书作用于xcode，存储在xcode的Organizer里，用于配置App的权限。
@@ -28,8 +30,6 @@ categories: iOS
 
 
 官方文档：[Creating and Installing the Provisioning Profile](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ProvisioningDevelopment.html#//apple_ref/doc/uid/TP40008194-CH104-SW5)
-
-<!-- More -->
 
 ### 2. 制作SSL证书和密钥(aps_developer_identity.cer)
 
