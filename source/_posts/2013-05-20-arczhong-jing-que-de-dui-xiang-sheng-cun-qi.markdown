@@ -33,8 +33,8 @@ categories: iOS
 }
 ```
 
-这种情况往往会造成崩溃，需要对对象的生存时间进行严格定义
-
+这种情况往往会造成崩溃，需要对对象的生存时间进行严格定义。
+<!-- more -->
 ```objectivec
 - (void)logWithData:(dispatch_data_t)data {
 	void *buf;
