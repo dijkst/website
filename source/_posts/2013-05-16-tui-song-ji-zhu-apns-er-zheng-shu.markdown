@@ -29,6 +29,8 @@ categories: iOS
 
 官方文档：[Creating and Installing the Provisioning Profile](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ProvisioningDevelopment.html#//apple_ref/doc/uid/TP40008194-CH104-SW5)
 
+<!-- More -->
+
 ### 2. 制作SSL证书和密钥(aps_developer_identity.cer)
 
 该证书用于完成服务器与APNS的SSL连接，仅用于服务器，后面还要将其转换为服务器能用的pem文件.
