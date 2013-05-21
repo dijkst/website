@@ -88,3 +88,5 @@ APNS服务器分为两种，sanbox（开发测试用）和production（上线服
 会出现，因此可以采取分批发送，发送一批等1秒，来检查发送状态，不用每发一条检查一下。
 - feedback会返回多久前的数据？  
 从上次连接feedback服务器到当前之间的数据。每次连接后都会清空数据。
+
+官方参考文档:[Provider Communication with Apple Push Notification Service](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/CommunicatingWIthAPS.html)
