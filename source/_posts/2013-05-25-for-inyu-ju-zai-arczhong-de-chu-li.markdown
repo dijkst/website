@@ -21,14 +21,14 @@ for (NSObject *obj in array) {
 }
 ```
 
-如果编译通过，在 obj = nil 时会release 掉obj， 会崩溃。
+如果编译通过，在`obj = nil` 时会release掉obj， 会崩溃。
 
 为了安全，编译器不会让上面语句编译通过。
-语句 for (NSObject *obj in array) { … } 不允许修改obj的值。
+语句 `for (NSObject *obj in array) { … }` 不允许修改obj的值。
 
 <!-- more -->
 
-若要修改obj的值需要显式添加 __strong
+若要修改obj的值需要显式添加 `__strong`
 
 ```
 for (NSString * __strong str in array) {
@@ -37,5 +37,5 @@ for (NSString * __strong str in array) {
 } // 正确
 ```
 
-但这里添加 __strong 影响效率. 应该考虑是否真有必要改变数组元素的值。
+但这里添加 `__strong` 影响效率. 应该考虑是否真有必要改变数组元素的值。
 
