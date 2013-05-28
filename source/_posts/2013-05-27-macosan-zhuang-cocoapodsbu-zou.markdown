@@ -6,7 +6,7 @@ comments: true
 categories: OSX
 ---
 
-Cocoapods本身就是ruby的一个gem，所以没啥特殊的安装方式，但是很多iOS或者OSX开发人员都对ruby不熟悉，所以简单的总结一下，比网络上那些教程简单一点。
+Cocoapods本身就是ruby的一个gem，所以没啥特殊的安装方式，但是很多iOS或者OSX开发人员都对ruby不熟悉，所以简单的总结一下。
 
 分为一下几步骤：
 
