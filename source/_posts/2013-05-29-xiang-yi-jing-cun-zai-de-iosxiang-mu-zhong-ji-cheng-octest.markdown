@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "向已经存在的iOS项目中集成OCTest"
+title: 在已经存在的iOS项目中集成OCTest"
 date: 2013-05-29 15:58
 comments: true
 categories: iOS
@@ -14,6 +14,8 @@ categories: iOS
 在`Build Settings`->`Bundle Loader`，设置为`$(BUILT_PRODUCTS_DIR)/待测试的Target名称.app/待测试的Target名称`
 
 {% img /images/post/2013-05-29-xiang-yi-jing-cun-zai-de-iosxiang-mu-zhong-ji-cheng-octest/2.jpg %}
+
+<!-- more -->
 
 在`Build Settings`->`Test Host`，设置为`$(BUNDLE_LOADER)`
 
