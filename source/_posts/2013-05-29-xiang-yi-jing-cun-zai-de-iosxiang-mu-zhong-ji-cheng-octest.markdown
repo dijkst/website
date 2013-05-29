@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 在已经存在的iOS项目中集成OCTest"
+title: 在已经存在的iOS项目中集成OCTest
 date: 2013-05-29 15:58
 comments: true
 categories: iOS
