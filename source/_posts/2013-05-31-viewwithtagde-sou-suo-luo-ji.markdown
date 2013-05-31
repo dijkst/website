@@ -18,7 +18,7 @@ categories: iOS
 
 这个不难理解，就不多说了，我们来个例子分析我遇到的问题：
 <!-- more -->
-{% codeblock AppDelegate.m lang:objectivec %}
+{% codeblock lang:objectivec %}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
