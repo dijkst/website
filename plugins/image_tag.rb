@@ -44,6 +44,10 @@ module Jekyll
         "Error processing input, expected syntax: {% img [class name(s)] [http[s]:/]/path/to/image [width [height]] [title text | \"title text\" [\"alt text\"]] %}"
       end
     end
+
+    def img_info
+      @img
+    end
   end
 end
 
