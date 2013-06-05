@@ -6,7 +6,7 @@ comments: true
 categories: bash
 ---
 
-只用$(dirname $_)是不能获得绝对路径的， 还要跳到那个目录，再获取绝对路径，命令如下
+只用$(dirname $0)是不能获得绝对路径的， 还要跳到那个目录，再获取绝对路径，命令如下
 
 {% codeblock script.sh %}
 #!/bin/bash
