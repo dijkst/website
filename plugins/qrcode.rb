@@ -1,5 +1,4 @@
 module Jekyll
-    # import 'ImageTag'
   class QRCode < Liquid::Tag
     @size = ""
     @img = nil
@@ -24,7 +23,5 @@ module Jekyll
     end
 
   end
-
-
 end
 Liquid::Template.register_tag('qrcode', Jekyll::QRCode)
