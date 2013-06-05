@@ -51,7 +51,6 @@ module Jekyll
     def render(context)
         url = @img.img_info['src']
         @img.img_info['src'] = "http://chart.apis.google.com/chart?chs=#{@size}&cht=qr&chld=|0&chco=165B94&chl=#{url.start_with?('/') ? context.registers[:site].config['url']+url : url}"
-        @img.img_info['style'] = "border:.2em #fff solid"
         "<a href=#{url}>#{@img.render(context)}</a>"
     end
   end
