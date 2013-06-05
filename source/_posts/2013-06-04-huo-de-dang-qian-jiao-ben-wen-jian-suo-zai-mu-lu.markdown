@@ -10,6 +10,6 @@ categories: bash
 
 {% codeblock script.sh %}
 #!/bin/bash
-DIR=`cd $(dirname $_); pwd`
+DIR=`cd $(dirname $0); pwd`
 echo $DIR
 {% endcodeblock %}
