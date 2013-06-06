@@ -11,3 +11,6 @@ source.old
 source/_stash
 source/stylesheets/screen.css
 node_modules
+.app_store_developer
+.themes/oct2
+.themes/slash
