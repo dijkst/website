@@ -35,12 +35,50 @@ module Jekyll
 
 			result = ""
 			result = result + <<-JS
-<script type="text/javascript">
-function app_li_mouse_in_out(img_id, image)
-{
-  document.getElementById(img_id).setAttribute("src", image)
+<style type="text/css">
+.flip-container, .front, .back {
+	width: 120px;
+	height: 120px;
 }
-</script>
+.flip-container {
+  -webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	perspective: 1000;
+}
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+	-webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.flipper {
+  -webkit-transition: 0.6s;
+	-webkit-transform-style: preserve-3d;
+
+	-moz-transition: 0.6s;
+	-moz-transform-style: preserve-3d;
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+.front, .back {
+  -webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.front {
+	z-index: 2;
+}
+.back {
+	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+}
+</style>
                           JS
 
 			json.each do |app|
@@ -51,15 +89,29 @@ function app_li_mouse_in_out(img_id, image)
 				qr_image = "http://chart.apis.google.com/chart?chs=120x120&cht=qr&chld=|0&chco=165B94&chl=#{link}"
 
 				result = result + <<-HTML
-<li onmouseover='app_li_mouse_in_out("img_#{bundleId}", "#{qr_image}")' onmouseout='app_li_mouse_in_out("img_#{bundleId}", "#{icon}")'>
-<p style='text-align: center' align='center'>
-<a class='#{bundleId}' href='#{link}' style='text-decoration: none !important' target='_blank'>
-  <img id='img_#{bundleId}' src='#{icon}' class='#{bundleId}' style='width:120px; height:120px; vertical-align:middle; margin-left: auto; margin-right: auto; border: 0em; border-radius:22px' />
+
+<li>
+<div align='center'>
+<div class="flip-container" ontouchstart='this.classList.toggle('hover');' style='margin-bottom: 10px'>
+<div class="flipper" style='text-align: center' align='center'>
+<div class='front'>
+<a class='#{bundleId}' href='#{link}' style='text-decoration: none !important; white-space: normal' target='_blank'>
+  <img id='img_#{bundleId}' src='#{icon}' class='#{bundleId}' style='width:120px; height:120px; border: 0em; border-radius:22px' />
 </a>
-</p>
+</div>
+<div class='back'>
+<a class='#{bundleId}' href='#{link}' style='text-decoration: none !important; white-space: normal' target='_blank'>
+  <img id='img_#{bundleId}_qr' src='#{qr_image}' class='#{bundleId}' style='width:120px; height:120px; border: 0em; border-radius:22px' />
+</a>
+</div>
+</div>
+</div>
+<div>
 <p style='text-align: center'>
 #{name}
 </p>
+</div>
+</div>
 </li>
                           HTML
 
