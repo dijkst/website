@@ -34,19 +34,29 @@ module Jekyll
 			json.shift
 
 			result = ""
+			result = result + <<-JS
+<script type="text/javascript">
+function app_li_mouse_in_out(img_id, image)
+{
+  document.getElementById(img_id).setAttribute("src", image)
+}
+</script>
+                          JS
+
 			json.each do |app|
 				name = app['trackName']
 				icon = app['artworkUrl512']
 				link = app['trackViewUrl']
-				bundleId = app['bundleId'].strip.gsub('.', '-').downcase;
+				bundleId = app['bundleId'].strip.gsub('.', '-').downcase
+				qr_image = "http://chart.apis.google.com/chart?chs=120x120&cht=qr&chld=|0&chco=165B94&chl=#{link}"
 
 				result = result + <<-HTML
-<li>
-<p style='text-align: center'>
-<a class='#{bundleId}' href='#{link}' style='text-decoration: none !important'>
-  <img src='#{icon}' class='app-icon' style='width:120px; height:120px; vertical-align:middle; margin-left: auto; margin-right: auto; border: 0em; border-radius:22px' />
+<li onmouseover='app_li_mouse_in_out("img_#{bundleId}", "#{qr_image}")' onmouseout='app_li_mouse_in_out("img_#{bundleId}", "#{icon}")'>
+<p style='text-align: center' align='center'>
+<a class='#{bundleId}' href='#{link}' style='text-decoration: none !important' target='_blank'>
+  <img id='img_#{bundleId}' src='#{icon}' class='#{bundleId}' style='width:120px; height:120px; vertical-align:middle; margin-left: auto; margin-right: auto; border: 0em; border-radius:22px' />
 </a>
-<p>
+</p>
 <p style='text-align: center'>
 #{name}
 </p>
