@@ -10,10 +10,13 @@ KVO是降低代码耦合度的一种很有效的方法，以往我都是对某�
 
 Google了一下，又查阅了官方文档，目前有两种方法：
 
-- 手动实现insert方法和remove方法
-- 调用系统的`mutableValueForKey:`方法，自动触发KVO
+- 手动实现insert方法和remove方法 [文档](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/AccessorConventions.html#//apple_ref/doc/uid/20002174-178830-BAJEDEFB)
+- 调用系统的`mutableValueForKey:`方法，自动触发KVO [文档](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Protocols/NSKeyValueCoding_Protocol/Reference/Reference.html#//apple_ref/occ/instm/NSObject/mutableArrayValueForKey:)
 
-老实说，这两种方法具体实现逻辑还不是很清楚，有待进一步深入学习Key-Value编程。
+第一种方法具体实现逻辑还不是很清楚，有待进一步深入学习Key-Value编程。
+
+第二种方法使用了Proxy。
+
 <!-- more -->
 来个Demo：
 
