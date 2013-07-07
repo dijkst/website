@@ -3,7 +3,7 @@ layout: post
 title: "MacOS常用小众软件收集"
 date: 2013-06-29 15:17
 comments: true
-categories: MacOS
+categories: OSX
 ---
 打算迁移系统了，但是不想采用升级的方式，毕竟一个系统用久了，有好多垃圾文件，无论是自己遗留的还是系统或者第三方软件遗留的，总之硬盘是越来越小了。既然打算升级，干脆来一个大换血吧。
 

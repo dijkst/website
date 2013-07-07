@@ -3,7 +3,7 @@ layout: post
 title: "使用CocoaAsyncSocket发送TCP/UDP消息"
 date: 2013-07-02 17:19
 comments: true
-categories: 
+categories: iOS
 ---
 
 习惯上每次使用一个类库的功能，我第一时间想到的都是Google那个类库的使用例子。这不是一个好习惯，这次我下载了CocoaAsyncSocket的代码，找了好一阵没找到满意的例子。灰心丧气之余想到很多用到我写的代码的人们也是不看文档，不看注释的。他们给我带来了巨大的困扰，而我现在也不看别人的注释和文档，假如CocoaAsyncSocket的作者要为我服务的话，那他肯定也会吐血不止。
