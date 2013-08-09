@@ -14,3 +14,4 @@ node_modules
 .app_store_developer
 .themes/oct2
 .themes/slash
+.preview-mode
