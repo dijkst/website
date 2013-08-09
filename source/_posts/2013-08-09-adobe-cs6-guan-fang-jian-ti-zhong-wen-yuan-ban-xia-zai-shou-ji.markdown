@@ -20,7 +20,7 @@ Adobe Creative Suite 6 分为 `Design Standard`、`Design & Web Premium`、`Prod
 ### 下载地址
 
 1. 前往 [http://www.adobe.com/cn/](http://www.adobe.com/cn/) 注册Adobe ID，如果已注册，忽略此步骤；
-- 下载任意一个 Adobe 产品的试用版[http://www.adobe.com/cn/downlo](http://www.adobe.com/cn/downloads/ds/)（只要点击下载按钮，弹出文件保存对话框，然后取消。获得session cookie即可）
+- 下载任意一个 Adobe 产品的试用版[http://www.adobe.com/cn/downloads](http://www.adobe.com/cn/downloads/)（只要点击下载按钮，弹出文件保存对话框，然后取消。获得session cookie即可）
 - 使用浏览器自带下载功能下载软件或者用迅雷离线下载均可。
 
 ##### 套件下载地址
