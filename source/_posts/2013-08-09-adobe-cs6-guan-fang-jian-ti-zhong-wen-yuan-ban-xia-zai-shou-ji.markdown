@@ -3,7 +3,7 @@ layout: post
 title: "Adobe CS6 官方简体中文原版下载收集"
 date: 2013-08-09 13:08
 comments: true
-categories: OSX, windows
+categories: OSX windows
 ---
 不知道为啥，Adobe 官方下载的时候没有中文的选择？例如下载 PS 的地址：[http://www.adobe.com/cfusion/tdrc/index.cfm?product=photoshop&loc=cn](http://www.adobe.com/cfusion/tdrc/index.cfm?product=photoshop&loc=cn)，只能选择英文……
 
