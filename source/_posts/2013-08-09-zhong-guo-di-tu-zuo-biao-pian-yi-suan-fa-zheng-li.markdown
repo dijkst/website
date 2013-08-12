@@ -25,8 +25,6 @@ categories: iOS 算法
 不过，网络上，不知道从哪里出来了一套算法，我试了一下，还挺准的~
 
 {% codeblock lang:objective-c %}
-const double pi = 3.14159265358979324;
-
 //
 // Krasovsky 1940
 //
@@ -50,18 +48,18 @@ BOOL outOfChina(CLLocationCoordinate2D coordinate)
 double transformLat(double x, double y)
 {
     double ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * sqrt(abs(x));
-    ret += (20.0 * sin(6.0 * x * pi) + 20.0 * sin(2.0 * x * pi)) * 2.0 / 3.0;
-    ret += (20.0 * sin(y * pi) + 40.0 * sin(y / 3.0 * pi)) * 2.0 / 3.0;
-    ret += (160.0 * sin(y / 12.0 * pi) + 320 * sin(y * pi / 30.0)) * 2.0 / 3.0;
+    ret += (20.0 * sin(6.0 * x * M_PI) + 20.0 * sin(2.0 * x * M_PI)) * 2.0 / 3.0;
+    ret += (20.0 * sin(y * M_PI) + 40.0 * sin(y / 3.0 * M_PI)) * 2.0 / 3.0;
+    ret += (160.0 * sin(y / 12.0 * M_PI) + 320 * sin(y * M_PI / 30.0)) * 2.0 / 3.0;
     return ret;
 }
 
 static double transformLon(double x, double y)
 {
     double ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * sqrt(abs(x));
-    ret += (20.0 * sin(6.0 * x * pi) + 20.0 * sin(2.0 * x * pi)) * 2.0 / 3.0;
-    ret += (20.0 * sin(x * pi) + 40.0 * sin(x / 3.0 * pi)) * 2.0 / 3.0;
-    ret += (150.0 * sin(x / 12.0 * pi) + 300.0 * sin(x / 30.0 * pi)) * 2.0 / 3.0;
+    ret += (20.0 * sin(6.0 * x * M_PI) + 20.0 * sin(2.0 * x * M_PI)) * 2.0 / 3.0;
+    ret += (20.0 * sin(x * M_PI) + 40.0 * sin(x / 3.0 * M_PI)) * 2.0 / 3.0;
+    ret += (150.0 * sin(x / 12.0 * M_PI) + 300.0 * sin(x / 30.0 * M_PI)) * 2.0 / 3.0;
     return ret;
 }
 
@@ -74,12 +72,12 @@ CLLocationCoordinate2D wgs2gcj(CLLocationCoordinate2D coordinate) {
     double wgLon = coordinate.longitude;
     double dLat = transformLat(wgLon - 105.0, wgLat - 35.0);
     double dLon = transformLon(wgLon - 105.0, wgLat - 35.0);
-    double radLat = wgLat / 180.0 * pi;
+    double radLat = wgLat / 180.0 * M_PI;
     double magic = sin(radLat);
     magic = 1 - ee * magic * magic;
     double sqrtMagic = sqrt(magic);
-    dLat = (dLat * 180.0) / ((a * (1 - ee)) / (magic * sqrtMagic) * pi);
-    dLon = (dLon * 180.0) / (a / sqrtMagic * cos(radLat) * pi);
+    dLat = (dLat * 180.0) / ((a * (1 - ee)) / (magic * sqrtMagic) * M_PI);
+    dLon = (dLon * 180.0) / (a / sqrtMagic * cos(radLat) * M_PI);
     return CLLocationCoordinate2DMake(wgLat + dLat, wgLon + dLon);
 }
 
@@ -93,21 +91,21 @@ CLLocationCoordinate2D gcj2wgs(CLLocationCoordinate2D coordinate) {
 }
 
 
-const double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+const double x_M_PI = M_PI * 3000.0 / 180.0;
 
 // 火星坐标系 (GCJ-02) -> 百度坐标系 (BD-09)
 CLLocationCoordinate2D bd_encrypt(CLLocationCoordinate2D coordinate) {
     double x = coordinate.longitude, y = coordinate.latitude;
-    double z = sqrt(x * x + y * y) + 0.00002 * sin(y * x_pi);
-    double theta = atan2(y, x) + 0.000003 * cos(x * x_pi);
+    double z = sqrt(x * x + y * y) + 0.00002 * sin(y * x_M_PI);
+    double theta = atan2(y, x) + 0.000003 * cos(x * x_M_PI);
     return CLLocationCoordinate2DMake(z * sin(theta) + 0.006, z * cos(theta) + 0.0065);
 }
 
 // 火星坐标系 (GCJ-02) <- 百度坐标系 (BD-09)
 CLLocationCoordinate2D bd_decrypt(CLLocationCoordinate2D coordinate) {
     double x = coordinate.latitude - 0.0065, y = coordinate.longitude - 0.006;
-    double z = sqrt(x * x + y * y) - 0.00002 * sin(y * x_pi);
-    double theta = atan2(y, x) - 0.000003 * cos(x * x_pi);
+    double z = sqrt(x * x + y * y) - 0.00002 * sin(y * x_M_PI);
+    double theta = atan2(y, x) - 0.000003 * cos(x * x_M_PI);
     return CLLocationCoordinate2DMake(z * sin(theta), z * cos(theta));
 }
 {% endcodeblock %}
