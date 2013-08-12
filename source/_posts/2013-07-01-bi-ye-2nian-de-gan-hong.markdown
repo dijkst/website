@@ -3,7 +3,6 @@ layout: post
 title: "毕业2年的感触"
 date: 2013-07-01 19:37
 comments: true
-published: false
 categories: 生活随笔
 ---
 时光飞逝，一晃工作两年了。2011年的6月30日，带着对同学的不舍，带着对未来道路的迷茫，带着对即将开始人生第一份工作的激动，离开了华电的大门。在离开的那一刻，我相信，我们一定会变得很优秀，大家都要加油~
@@ -123,6 +122,8 @@ luobo 在我即将离开的这几天，不知道是我自我感觉良好，还�
 都说第一家公司对于一个人的职业生涯影响会很大。我能遇到赏识我的 Vincent，包容我的赵导，更能遇到亦师亦友的 Henry、Terry、Storm、Amy、luliu、Ryan、Guanming，还有 luobo，是我这两年最大的收获~
 
 两年里，第一年积累了技术，第二年积累了处事，接下来呢~
+
+{% img /images/post/2013-07-01-bi-ye-2nian-de-gan-hong/1.jpg %}
 
 {% audio /media/2013-07-01-bi-ye-2nian-de-gan-hong/孤单的习惯.mp3 /media/2013-07-01-bi-ye-2nian-de-gan-hong/孤单的习惯.ogg %}
 
