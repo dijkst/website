@@ -79,10 +79,15 @@ MAC 版：[PremierePro_6_LS7.dmg](http://trials2.stage.adobe.com/AdobeProducts/P
 Windows 版：[AfterEffects_11_LS7.7z](http://trials2.stage.adobe.com/AdobeProducts/AEFT/11/win64/AfterEffectsL_11_S7.7z)  
 MAC 版：[AfterEffects_11_LS7.dmg](http://trials2.stage.adobe.com/AdobeProducts/AEFT/11/win64/AfterEffects_11_LS7.dmg)
 
+##### 其他工具
+
+[Adobe Cleaner Tool](http://www.adobe.com/support/contact/cscleanertool.html)
+用于清除 Adobe Creative Cloud, Adobe Creative Suite 6, Adobe Creative Suite 5 - 5.5, Adobe Creative Suite 4, Adobe Creative Suite 3 安装信息。
+
 ### 破解方法
 
 破解文件：  
-Windows 版：[CS6WindowsPatch.zip](/media/2013-08-09-adobe-cs6-guan-fang-jian-ti-zhong-wen-yuan-ban-xia-zai-shou-ji/CS6WindowcsPath.zip)  
+Windows 版：[CS6WindowsPatch.zip](/media/2013-08-09-adobe-cs6-guan-fang-jian-ti-zhong-wen-yuan-ban-xia-zai-shou-ji/CS6WindowsPatch.zip)  
 MAC 版：[amtlib.framework.zip](/media/2013-08-09-adobe-cs6-guan-fang-jian-ti-zhong-wen-yuan-ban-xia-zai-shou-ji/amtlib.framework.zip)
 
 - {% highlight 安装时断开网络 %}，输入序列号：  
