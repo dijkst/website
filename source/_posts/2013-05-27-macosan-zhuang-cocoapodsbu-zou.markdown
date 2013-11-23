@@ -25,6 +25,8 @@ __请先确保XCODE为最新版本！！！__
 在Xcode的`Preferences`->`Downloads`->`Components`里面可以直接安装，也可以到[Apple](https://developer.apple.com/downloads/index.action)单独下载安装。
 
 <!-- more -->
+MacOSX 10.9 系统下，还需要执行命令行`xcode-select --install`！
+
 #### 安装Homebrew
 
 ```
@@ -56,10 +58,10 @@ $ \curl -L https://get.rvm.io | bash -s stable --autolibs=enable
 
 #### 安装ruby
 
-选择合适的ruby版本，选择cocoapods比较兼容的版本装，例如装1.9.3版本：
+选择合适的ruby版本，选择cocoapods比较兼容的版本装，例如装2.0版本：
 
 ```
-$ rvm install 1.9.3
+$ rvm install 2.0
 ```
 
 #### 安装cocoapods
