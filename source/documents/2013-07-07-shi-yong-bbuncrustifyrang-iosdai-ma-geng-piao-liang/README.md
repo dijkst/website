@@ -16,7 +16,7 @@ You can distribute your configurations over pull request.
 
 ## Installation
 
-1. using [HomeBrew](http://mxcl.github.io/homebrew/) install Uncrustify 
+1. using [HomeBrew](http://brew.sh/) install Uncrustify 
 ```
 brew install uncrustify --HEARD
 ```
