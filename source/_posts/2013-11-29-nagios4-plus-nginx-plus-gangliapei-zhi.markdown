@@ -22,7 +22,7 @@ categories: linux
 ### 下面是我的安装配置过程
 
 #### 1. 安装依赖
-	
+
 ```
 	apt-get install libperl-dev libpng12-dev libgd2-xpm-dev build-essential php5-gd wget libgd2-xpm
 ```
@@ -35,7 +35,8 @@ categories: linux
 	usermod -G nagcmd nagios
 	usermod -a -G nagcmd www-data
 ```
-	
+
+<!-- more -->
 #### 3. 在一个临时文件夹下下载解压 nagios 源码以及插件源码， 最新的源码可以在 [nagios.org](http://www.nagios.org/download/) 上找到
 
 ```
