@@ -21,13 +21,15 @@ categories: linux
 
 ### 下面是我的安装配置过程
 
-#### 1. 安装依赖
+#### 安装依赖
 	
 ```
 	apt-get install libperl-dev libpng12-dev libgd2-xpm-dev build-essential php5-gd wget libgd2-xpm
 ```
+
+<!-- more -->
 	
-##### 2. 创建 nagios 用户， 和 nagcmd 用户组
+#### 创建 nagios 用户， 和 nagcmd 用户组
 
 ```
 	adduser --system --no-create-home --disabled-login --group nagios
@@ -36,7 +38,7 @@ categories: linux
 	usermod -a -G nagcmd www-data
 ```
 	
-#### 3. 在一个临时文件夹下下载解压 nagios 源码以及插件源码， 最新的源码可以在 [nagios.org](http://www.nagios.org/download/) 上找到
+#### 在一个临时文件夹下下载解压 nagios 源码以及插件源码， 最新的源码可以在 [nagios.org](http://www.nagios.org/download/) 上找到
 
 ```
 	cd ~/tmp
@@ -48,7 +50,7 @@ categories: linux
 	tar xvf nagios-plugins-1.4.16.tar.gz
 ```
 	
-#### 4. 配置 nagios 源码并编译安装
+#### 配置 nagios 源码并编译安装
 
 ```
 	cd ~/tmp/nagios/nagios-4.0.2
@@ -66,10 +68,10 @@ categories: linux
 	make install-commandmode
 ```
 	
-	安装参考文章，需要 make install-init 的， 但我发现我这个版本的 init 脚本用不了， 在[All the geeky things](http://blacks3pt3mb3r.wordpress.com/tag/etcinit-dnagios-20-cant-open-etcrc-dinit-dfunctions/) 这个博客里找到了一个稍微修改就可以使用的脚本。将它放到 /etc/init.d/nagios 即可
+安装参考文章，需要 make install-init 的， 但我发现4.0.2版的 init 脚本用不了， 弄了好久最后在[All the geeky things](http://blacks3pt3mb3r.wordpress.com/tag/etcinit-dnagios-20-cant-open-etcrc-dinit-dfunctions/) 这个博客里找到了一个稍微修改就可以使用的脚本。将它放到 /etc/init.d/nagios 即可
 	
-#### 5. 设置网站登录密码，这个不是必须的详情请看参考文章
-#### 6. 设置nagios的log的存放位置
+#### 设置网站登录密码，参考 [Nagios on nginx & Ubuntu 12.04](http://idevit.nl/node/93)
+#### 设置nagios的log的存放位置
 
 ```
 	mkdir /var/log/nagios
@@ -77,7 +79,7 @@ categories: linux
 	chown nagios:nagios /var/log/nagios
 	vi /etc/nagios/nagios.cfg # 修改nagios.log的路径
 ```
-#### 7. 安装插件, 插件将被安装在 /usr/local/nagios/libexec 里面
+#### 安装插件, 插件将被安装在 /usr/local/nagios/libexec 里面
 
 ```
 	cd ~/tmp/nagios/nagios-plugins-1.5
@@ -85,7 +87,7 @@ categories: linux
 	make && make install
 ```
 	
-#### 8. 测试nagios的配置，并设置开机启动
+#### 测试nagios的配置，并设置开机启动
 	
 ```
 	/usr/local/nagios/bin/nagios -v /etc/nagios/nagios.cfg
@@ -100,19 +102,189 @@ categories: linux
 
 到这里，只需要 service nagios start 就可以启动nagios了。想要在网页上看到nagios，需要安装nginx 和 fcgi
 
+#### 安装 nginx & fcgi
+
 ```
 	apt-get install nginx
 	apt-get install spawn-fcgi fcgiwrap
 ```
 
-这时需要确认php-fpm监听的地址，从配置文件/etc/php5/fpm/pool.d/www.conf中可以找到  
-还需要确认/var/run/fcgiwrap.socket 是否存在，如果不存在则要另外找出这个socket的位置
+这时需要确认php-fpm监听的地址，从配置文件```/etc/php5/fpm/pool.d/www.conf```中可以找到, 假设为 ```unix:/var/run/php5-fpm.sock```  
+还需要确认```/var/run/fcgiwrap.socket```是否存在，如果不存在则要另外找出这个socket的位置
 
+#### 配置 nginx 并启动
 
+这里并不设置密码（不是必须，但一般都要设置，参考[Nagios on nginx & Ubuntu 12.04](http://idevit.nl/node/93)）
 
-	
+添加nginx配置
+
+{% codeblock /etc/nginx/sites-available/nagios %}
+server {
+        listen   9981;
+        root /var/www/html;
+        index index.html index.htm;
+        server_name localhost;
+        
+        location /nagios {
+                index index.php;
+                alias /usr/local/nagios/share/;
+        }
+
+        location ~ ^/nagios/(.*\.php)$ {
+                alias /usr/local/nagios/share/$1;
+                include /etc/nginx/fastcgi_params;
+                fastcgi_pass unix:/var/run/php5-fpm.sock;
+        }
+
+        location ~ \.cgi$ {
+                root /usr/local/nagios/sbin/;
+                rewrite ^/nagios/cgi-bin/(.*)\.cgi /$1.cgi break;
+                fastcgi_param AUTH_USER $remote_user;
+                fastcgi_param REMOTE_USER $remote_user;
+                include /etc/nginx/fastcgi_params;
+                fastcgi_pass unix:/var/run/fcgiwrap.socket;
+        }
+}
+{% endcodeblock %}
+
+启动nginx ```service nginx start```, 这时打开 http://localhost:9981/nagios 应该可以看到打开监控网页了。
+
+#### 安装ganglia插件
 
 ```
+cd /usr/local/nagios/libexec/
+touch check_ganglia.py
+chown nagios:nagios check_ganglia.py
+chmod +x check_ganglia.py
+vi check_ganglia.py
+```
+贴下面代码
+
+{% codeblock /usr/local/nagios/libexec/check_ganglia.py %}
+#!/usr/bin/env python
+
+import sys
+import getopt
+import socket
+import xml.parsers.expat
+
+class GParser:
+  def __init__(self, host, metric):
+    self.inhost =0
+    self.inmetric = 0
+    self.value = None
+    self.host = host
+    self.metric = metric
+
+  def parse(self, file):
+    p = xml.parsers.expat.ParserCreate()
+    p.StartElementHandler = parser.start_element
+    p.EndElementHandler = parser.end_element
+    p.ParseFile(file)
+    if self.value == None:
+      raise Exception('Host/value not found')
+    return float(self.value)
+
+  def start_element(self, name, attrs):
+    if name == "HOST":
+      if attrs["NAME"]==self.host:
+        self.inhost=1
+    elif self.inhost==1 and name == "METRIC" and attrs["NAME"]==self.metric:
+      self.value=attrs["VAL"]
+
+  def end_element(self, name):
+    if name == "HOST" and self.inhost==1:
+      self.inhost=0
+
+def usage():
+  print """Usage: check_ganglia \
+-h|--host= -m|--metric= -w|--warning= \
+-c|--critical= [-s|--server=] [-p|--port=] """
+  sys.exit(3)
+
+if __name__ == "__main__":
+##############################################################
+  ganglia_host = '127.0.0.1'
+  ganglia_port = 8649
+  host = None
+  metric = None
+  warning = None
+  critical = None
+
+  try:
+    options, args = getopt.getopt(sys.argv[1:],
+      "h:m:w:c:s:p:",
+      ["host=", "metric=", "warning=", "critical=", "server=", "port="],
+      )
+  except getopt.GetoptError, err:
+    print "check_gmond:", str(err)
+    usage()
+    sys.exit(3)
+
+  for o, a in options:
+    if o in ("-h", "--host"):
+       host = a
+    elif o in ("-m", "--metric"):
+       metric = a
+    elif o in ("-w", "--warning"):
+       warning = float(a)
+    elif o in ("-c", "--critical"):
+       critical = float(a)
+    elif o in ("-p", "--port"):
+       ganglia_port = int(a)
+    elif o in ("-s", "--server"):
+       ganglia_host = a
+
+  if critical == None or warning == None or metric == None or host == None:
+    usage()
+    sys.exit(3)
+       
+  try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((ganglia_host,ganglia_port))
+    parser = GParser(host, metric)
+    value = parser.parse(s.makefile("r"))
+    s.close()
+  except Exception, err:
+    print "CHECKGANGLIA UNKNOWN: Error while getting value \"%s\"" % (err)
+    sys.exit(3)
+
+  if value >= critical:
+    print "CHECKGANGLIA CRITICAL: %s is %.2f" % (metric, value)
+    sys.exit(2)
+  elif value >= warning:
+    print "CHECKGANGLIA WARNING: %s is %.2f" % (metric, value)
+    sys.exit(1)
+  else:
+    print "CHECKGANGLIA OK: %s is %.2f" % (metric, value)
+    sys.exit(0)
+
+{% endcodeblock %}
+
+在 ```/etc/nagios/objects/commands.cfg``` 添加上
+
+```
+# check_ganglia
+define command {
+    command_name check_ganglia
+    command_line $USER1$/check_ganglia.py -h $HOSTNAME$ -m $ARG1$ -w $ARG2$ -c $ARG3$
+}
+```
+
+#### 重启 nagios
+
+```
+service nagios restart
+```
+
+后面还需要配置nagios的service hosts hostgroups contacts， 这里不说了。have fun。
+
+
+
+
+#### 附带 /etc/init.d/nagios
+
+{% codeblock nagios %}
 # pidfile: /var/nagios/nagios.pid
 #
 ### BEGIN INIT INFO
@@ -254,4 +426,4 @@ case "$1" in
       exit 2
 esac
 exit $?
-```
+{% endblock %}
