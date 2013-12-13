@@ -30,7 +30,7 @@ MacOSX 10.9 系统下，还需要执行命令行`xcode-select --install`！
 #### 安装Homebrew
 
 ```
-$ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+$ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
 ```
 
 安装完成之后，执行诊断，检查是否有异常
