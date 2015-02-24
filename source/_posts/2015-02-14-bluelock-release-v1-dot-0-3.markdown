@@ -24,6 +24,6 @@ BlueLock 能够让你的 iPhone 变成 Mac 的钥匙：当离开的时候，自�
 >1. 出于系统限制和安全考虑，手机重启或者长时间未使用手机，系统会关闭本功能，只需要再次执行一次 BlueLock 即可。
 - Mac 如果想立即锁定系统，需要到 系统偏好设置 -> 安全性与隐私 -> 通用，勾选 “进入睡眠或开始屏幕保护程序要求输入密码”，并选择“立即”要求输入密码。
 
-Mac 端[点此下载](/media/2015-02-14-bluelock-release-v1-dot-0-3/bluelock.dmg)
+Mac 端[点此下载](/media/2015-02-14-bluelock-release-v1-dot-0-3/BlueLock.dmg)
 
 iPhone 端请点击右侧 App 图标下载，或者在 iPhone 的 AppStore 搜索 BlueLock。
