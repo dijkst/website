@@ -16,7 +16,7 @@ categories: iOS
 在 iPhone 的 iOS6 中，正常。
 
 因此估计是 iPad 的问题，上网搜了一下，发现这个问题是普遍存在的 —— 只在 iOS6 的 iPad 设备中出现！
-
+<!-- more -->
 参考地址： https://discussions.apple.com/thread/4420524?tstart=0
 
 `It apparently works with https, but http and itms-apps fail.`
