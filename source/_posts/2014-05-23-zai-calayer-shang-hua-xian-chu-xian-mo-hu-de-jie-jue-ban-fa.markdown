@@ -7,7 +7,7 @@ categories: iOS
 ---
 iOS 原生的 CALayer 不支持设置四边其中一个边框，只能设置整个边框(border)，因此想到设置一个属性来自己画线：
 
-{%code lang:objective-c %}
+{%codeblock lang:objective-c %}
 - (void)drawInContext:(CGContextRef)ctx {
     [super drawInContext:ctx];
 
@@ -60,7 +60,7 @@ iOS 原生的 CALayer 不支持设置四边其中一个边框，只能设置整�
     CGContextSetLineWidth(ref, width);
     CGContextStrokePath(ref);
 }
-{%endcode%}
+{%endcodeblock%}
 
 再简单不过的函数了，可是画出来的线总感觉很奇怪，同样是 width=1 的线，底部总感觉比左右边框更粗，也更模糊，而且不是总是这样的，仔细一看，好像 width 也差不多相同，就是虚了点，感觉多了一点像素。
 
@@ -86,7 +86,7 @@ CGContextSetShouldAntialias(context, NO)
 
 现在试着解决：
 
-{%code lang:objective-c %}
+{%codeblock lang:objective-c %}
 - (void)drawInContext:(CGContextRef)ctx {
     [super drawInContext:ctx];
 
@@ -123,7 +123,7 @@ CGContextSetShouldAntialias(context, NO)
                       color:self.borderBottomColor
                       width:self.borderBottomWidth];
 }
-{%endcode%}
+{%endcodeblock%}
 
 实践证明，正常了。
 
