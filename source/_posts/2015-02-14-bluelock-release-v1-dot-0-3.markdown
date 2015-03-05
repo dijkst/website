@@ -1,6 +1,6 @@
 ---
 layout: post
-title: BlueLock Release v1.0.4
+title: BlueLock Release v1.0.5
 date: 2015-02-14 13:35
 comments: true
 categories: Mac
