@@ -74,6 +74,7 @@ module Jekyll
 	z-index: 2;
 }
 .back {
+  z-index: 20;
 	transform: rotateY(180deg);
 	-webkit-transform: rotateY(180deg);
 	-moz-transform: rotateY(180deg);
