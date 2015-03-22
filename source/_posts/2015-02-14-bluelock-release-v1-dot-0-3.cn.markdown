@@ -4,8 +4,9 @@ title: BlueLock Release v1.0.6
 date: 2015-02-14 13:35
 comments: true
 categories: Mac
-alias: /BlueLock
+alias: /bluelock
 ---
+
 BlueLock 能够让你的 iPhone 变成 Mac 的钥匙：当离开的时候，自动锁定你的 Mac；当回到 Mac 前，会自动帮你输入解锁密码！
 
 亮点：
