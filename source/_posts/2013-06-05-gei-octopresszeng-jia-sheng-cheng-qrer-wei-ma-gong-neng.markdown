@@ -50,7 +50,7 @@ module Jekyll
 
     def render(context)
         url = @img.img_info['src']
-        @img.img_info['src'] = "http://chart.apis.google.com/chart?chs=#{@size}&cht=qr&chld=|0&chco=165B94&chl=#{url.start_with?('/') ? context.registers[:site].config['url']+url : url}"
+        @img.img_info['src'] = "https://api.qrserver.com/v1/create-qr-code/?size=#{@size}&margin=0&color=165B94&data=#{url.start_with?('/') ? context.registers[:site].config['url']+url : url}"
         "<a href=#{url}>#{@img.render(context)}</a>"
     end
   end

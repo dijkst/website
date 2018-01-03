@@ -48,11 +48,12 @@ module Jekyll
       end
 
       Dir.chdir(file_path) do
-        contents = file.read
-        if contents =~ /\A-{3}.+[^\A]-{3}\n(.+)/m
-          contents = $1.lstrip
-        end
-        contents = pre_filter(contents)
+        # contents = file.read
+        # if contents =~ /\A-{3}.+[^\A]-{3}\n(.+)/m
+        #   contents = $1.lstrip
+        # end
+        page = Jekyll::Page.new(context.registers[:site], file_path, "", @file)
+        contents = OctopressFilters::pre_filter(page)
         if @raw
           contents
         else

@@ -87,7 +87,7 @@ module Jekyll
 				icon = app['artworkUrl512']
 				link = app['trackViewUrl']
 				bundleId = app['bundleId'].strip.gsub('.', '-').downcase
-				qr_image = "http://chart.apis.google.com/chart?chs=120x120&cht=qr&chld=|0&chco=165B94&chl=#{link}"
+				qr_image = "https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=10&color=165B94&data=#{link}"
 
 				result = result + <<-HTML
 
