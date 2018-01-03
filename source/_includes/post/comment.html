@@ -1,0 +1,14 @@
+<div id="comment_thread"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: 'dijkst',
+  repo: 'dijkst.github.com',
+  oauth: {
+    client_id: '93de0dd7b67c8dd4d78c',
+    client_secret: '4e63490ff74c6b2e483445474bbfca14816dbb18',
+  },
+})
+gitment.render('comment_thread')
+</script>
